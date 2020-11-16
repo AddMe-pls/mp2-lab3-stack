@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ConsoleApplication1", "ConsoleApplication1\ConsoleApplication1.vcxproj", "{2B4AD93C-C485-4088-8937-E24C6F3C8745}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Stack", "Stack\ConsoleApplication1.vcxproj", "{2B4AD93C-C485-4088-8937-E24C6F3C8745}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
