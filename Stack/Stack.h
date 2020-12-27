@@ -7,9 +7,13 @@ class Stack {
 public:
 	Stack(int _MaxSize = 10)//конструктор(по умолчанию)
 	{
+		if (_MaxSize <= 0)
+		{
+			throw _MaxSize;
+		}
 		MaxSize = _MaxSize;
 		mas = new T[MaxSize];
-		size = 0;
+		Size = 0;
 	}
 	~Stack()//деструктор
 	{
@@ -25,7 +29,7 @@ public:
 	}
 	Stack& operator = (const Stack<T>& s)//оператор присваивания
 	{
-		if MaxSize != s.MaxSize;
+		if (MaxSize != s.MaxSize)
 		{
 			delete[]mas;
 			MaxSize = s.MaxSize;
@@ -66,6 +70,32 @@ public:
 	{
 		if (Empty())
 			throw Size;
-		return mas[size - 1];
+		return mas[Size - 1];
+	}
+	int StSize() 
+	{ 
+	return Size; 
+	}
+	void StClear() 
+	{
+		Size = 0;
+	}
+	int operator == (const Stack<T>& s)
+	{
+		if (this != &s)
+		{
+			if (MaxSize != s.MaxSize || Size != s.Size)
+				return -1;
+			for (int i = 0; i < Size; i++)
+			{
+				if (mas[i] != s.mas[i])
+					return -1;
+			}
+		}
+		return 1;
+	}
+	int operator != (const Stack<T>& s)
+	{
+		return !(*this == s);
 	}
 };
