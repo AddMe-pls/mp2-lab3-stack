@@ -11,102 +11,129 @@ struct TLink
 
 template <class T>  
 class Stack {
-	int Size;// кол-во элементов в стэке 
-	T* mas; // массив для стэка
-	int MaxSize;// размер массива для стэка
+	TLink<T>* pFirst;
 public:
-	Stack(int _MaxSize = 10)//конструктор(по умолчанию)
+	Stack()
 	{
-		if (_MaxSize <= 0)
+		pFirst = NULL;
+	}
+	~Stack()
+	{
+		while (pFirst)
 		{
-			throw _MaxSize;
+			TLink<T>* tmp = pFirst;
+			pFirst = pFirst->pNext;
+			delete tmp;
 		}
-		MaxSize = _MaxSize;
-		mas = new T[MaxSize];
-		Size = 0;
 	}
-	~Stack()//деструктор
+	Stack(const Stack<T>& s)
 	{
-		delete[] mas;
-	}
-	Stack(const Stack<T>& s)//конструктор копирования
-	{
-		MaxSize = s.MaxSize;
-		Size = s.Size;
-		mas = new T[MaxSize];
-		for (int i = 0; i < Size; i++)
-			mas[i] = s.mas[i];
-	}
-	Stack& operator = (const Stack<T>& s)//оператор присваивания
-	{
-		if (this != &s)
+		TLink<T>* tmp = new TLink<T>;
+	    TLink<T>*tmp1 = s.pFirst;
+		tmp->val = s.pFirst->val;
+		pFirst = tmp;
+		tmp1 = tmp1->pNext;
+		while (tmp1)
 		{
-			if (MaxSize != s.MaxSize)
-			{
-				MaxSize = s.MaxSize;
-				delete[] mas;
-				mas = new T[MaxSize];
-			}
-			Size = s.Size;
-			for (int i = 0; i < Size; i++)
-			{
-				mas[i] = s.mas[i];
-			}
+			TLink<T>* t = new TLink<T>;
+			tmp->pNext = t;
+			t->val = tmp1->val;
+			tmp = tmp->pNext;
+			tmp1 = tmp1->pNext;
 		}
+		tmp->pNext = NULL;
+	}
+	Stack& operator = (const Stack<T>& s)
+	{
+
+		if (s.pFirst != NULL)
+		{
+			while (pFirst != NULL)
+			{
+				this->StClear();
+			}
+			TLink<T>* tmp = new TLink<T>;
+			TLink<T>* tmp1 = s.pFirst;
+			tmp->val = s.pFirst->val;
+			pFirst = tmp;
+			tmp1 = tmp1->pNext;
+			while (tmp1)
+			{
+				TLink<T>* t = new TLink<T>;
+				tmp->pNext = t;
+				t->val = tmp1->val;
+				tmp = tmp->pNext;
+				tmp1 = tmp1->pNext;
+			}
+			tmp->pNext = NULL;
+		}
+		else
+			pFirst = NULL;
 		return (*this);
 	}
-	bool Empty()//проверка текущего объекта стека на пустоту
+	bool Empty()
 	{
-		if (Size == 0)
+		if (pFirst = NULL);
 			return true;
 		return false;
 	}
-	bool Full()//проверка текущего объекта стека на полноту
+	bool Full()
 	{
-		if (Size == MaxSize)
-			return true;
 		return false;
 	}
-	void Push(T a)// Добавить элемент на верх стека
+	void Push(T a)
 	{
-		if (Full()==true)
-			throw MaxSize;
-		mas[Size] = a;
-		Size++;
+		TLink<T>* tmp = new TLink<T>;
+		tmp->pNext = pFirst;
+		tmp->val = a;
+		pFirst = tmp;
 	}
-	T Pop()// Забрать верхний элемент стека
+	T Pop()
 	{
-		if (Empty())
-			throw Size;
-		return mas[--Size];
+		T tmp = pFirst->val;
+		TLink<T>* t = pFirst;
+		pFirst = pFirst->pNext;
+		delete t;
+		return tmp;
 	}
-	T Top()// Посмотерть верхний элемент стэка
+	T Top()
 	{
-		if (Empty())
-			throw Size;
-		return mas[Size - 1];
+		if (pFirst == NULL)
+			throw 0;
+		return pFirst->val;
 	}
 	int StSize() 
 	{ 
-	return Size; 
+		int k = 0;
+		TLink<T>* t = pFirst;
+		while (t)
+		{
+			t = t->pNext;
+			k++;
+		}
+		return k;
 	}
 	void StClear() 
 	{
-		Size = 0;
+		while (pFirst)
+		{
+			TLink<T>* tmp = pFirst;
+			pFirst = pFirst->pNext;
+			delete tmp;
+		}
 	}
 	int operator == (const Stack<T>& s)
 	{
-		if (this != &s)
-		{
-			if (MaxSize != s.MaxSize || Size != s.Size)
-				return -1;
-			for (int i = 0; i < Size; i++)
+			TLink<T>* tmp = s.pFirst;
+			TLink<T>* tmp1 = pFirst;
+			while (tmp)
 			{
-				if (mas[i] != s.mas[i])
-					return -1;
+				if (tmp->val != tmp1->val)
+					return false;
+				tmp = tmp->pNext;
+				tmp1 = tmp1->pNext;
 			}
-		}
-		return 1;
+		return true;
 	}
 	int operator != (const Stack<T>& s)
 	{
