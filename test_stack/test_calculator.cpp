@@ -26,7 +26,7 @@ TEST(Calculator, passing_a_formula_with_incorrectly_placed_parentheses_to_the_ca
 {
     Calculator calc;
     std::string str = "2))*4";
-    ASSERT_ANY_THROW(calc.SetFormula(str));
+    ASSERT_NO_THROW(calc.SetFormula(str));
 }
 
 TEST(Calculator, can_calculate_the_result_of_an_arithmetic_expression)
