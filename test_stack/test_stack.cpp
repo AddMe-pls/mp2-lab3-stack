@@ -1,6 +1,7 @@
-#include "../Stack/Stack.h"
-
+#define _SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING
 #include "gtest.h"
+#include "../Stack/Stack.h"
+#include<iostream>
 
 TEST(Stack, can_create_stack_with_positive_MaxSize)
 {
@@ -17,9 +18,9 @@ TEST(Stack, throws_when_create_stack_with_negative_MaxSize)
 TEST(Stack, can_get_size)
 {
     Stack<int> s(5);
-    s.Push(5);
+    s.Push(4);
     ASSERT_NO_THROW(s.StSize());
-    EXPECT_EQ(1, s.StSize());
+    EXPECT_EQ(s.StSize(), 1);
 }
 
 

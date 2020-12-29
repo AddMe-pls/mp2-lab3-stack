@@ -1,7 +1,7 @@
 ﻿#include <iostream>
 #include "Stack.h"
 
-int main()
+/*int main()
 {
     std::cout << "Hello World!\n";
-}
+}*/

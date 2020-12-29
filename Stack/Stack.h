@@ -1,4 +1,5 @@
 #pragma once
+#include<iostream>
 template <class T>  
 class Stack {
 	int Size;// кол-во элементов в стэке 
@@ -22,22 +23,27 @@ public:
 	Stack(const Stack<T>& s)//конструктор копирования
 	{
 		MaxSize = s.MaxSize;
-		mas = new T[MaxSize];
 		Size = s.Size;
+		mas = new T[MaxSize];
 		for (int i = 0; i < Size; i++)
 			mas[i] = s.mas[i];
 	}
 	Stack& operator = (const Stack<T>& s)//оператор присваивания
 	{
-		if (MaxSize != s.MaxSize)
+		if (this != &s)
 		{
-			delete[]mas;
-			MaxSize = s.MaxSize;
-			mas = new T[MaxSize];
+			if (MaxSize != s.MaxSize)
+			{
+				MaxSize = s.MaxSize;
+				delete[] mas;
+				mas = new T[MaxSize];
+			}
 			Size = s.Size;
+			for (int i = 0; i < Size; i++)
+			{
+				mas[i] = s.mas[i];
+			}
 		}
-		for (int i = 0; i < Size; i++)
-			mas[i] = s.mas[i];
 		return (*this);
 	}
 	bool Empty()//проверка текущего объекта стека на пустоту
@@ -54,7 +60,7 @@ public:
 	}
 	void Push(T a)// Добавить элемент на верх стека
 	{
-		if (Full())
+		if (Full()==true)
 			throw MaxSize;
 		mas[Size] = a;
 		Size++;
@@ -63,8 +69,7 @@ public:
 	{
 		if (Empty())
 			throw Size;
-		Size--;
-		return mas[Size];
+		return mas[--Size];
 	}
 	T Top()// Посмотерть верхний элемент стэка
 	{

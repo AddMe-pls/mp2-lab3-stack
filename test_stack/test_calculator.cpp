@@ -1,6 +1,7 @@
+#define _SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING
 #include "../Calculator/Calculator.h"
+#include "../Calculator/Calculator.cpp"
 #include "gtest.h"
-
 
 TEST(Calculator, can_create_a_calculator)
 {

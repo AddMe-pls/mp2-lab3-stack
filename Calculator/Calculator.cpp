@@ -9,11 +9,16 @@ int Calculator::Priority(char elem)
 	{
 	case'(':return 1;
 	case')':return 1;
+	case's':return 1;
+	case'c':return 1;
+	case'l':return 1;
+	case'e':return 1;
 	case'+': return 2;
 	case'-': return 2;
 	case'*': return 3;
 	case'/': return 3;
 	case'^':return 4;
+	default: return 0;
 	}
 }
 bool Calculator:: CheckBrackets()
