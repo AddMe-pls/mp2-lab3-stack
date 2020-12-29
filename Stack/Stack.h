@@ -54,7 +54,7 @@ public:
 	}
 	bool Full()//проверка текущего объекта стека на полноту
 	{
-		if (Size = MaxSize)
+		if (Size == MaxSize)
 			return true;
 		return false;
 	}

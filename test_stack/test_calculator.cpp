@@ -25,7 +25,7 @@ TEST(Calculator, can_pass_the_correct_string_with_parentheses_to_the_calculator)
 TEST(Calculator, passing_a_formula_with_incorrectly_placed_parentheses_to_the_calculator_will_cause_an_exception)
 {
     Calculator calc;
-    std::string str = "(2*4";
+    std::string str = "2))*4";
     ASSERT_ANY_THROW(calc.SetFormula(str));
 }
 

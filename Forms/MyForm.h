@@ -1,6 +1,6 @@
 ﻿#pragma once
 #include<iostream>
-//#include <string>
+#include <string>
 #include <msclr\marshal_cppstd.h>
 #include "../Calculator/Calculator.h"
 
@@ -14,7 +14,7 @@ namespace Forms {
 	using namespace System::Drawing;
 
 	/// <summary>
-	/// Ñâîäêà äëÿ MyForm
+	/// Сводка для MyForm
 	/// </summary>
 	public ref class MyForm : public System::Windows::Forms::Form
 	{
@@ -76,16 +76,16 @@ namespace Forms {
 			this->button1->TabIndex = 1;
 			this->button1->Text = L"=";
 			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &MyForm::button1_Click);
 			// 
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(241, 76);
+			this->label1->Location = System::Drawing::Point(254, 78);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(18, 20);
+			this->label1->Size = System::Drawing::Size(14, 20);
 			this->label1->TabIndex = 2;
 			this->label1->Text = L" ";
-			//this->label1->Click += gcnew System::EventHandler(this, &MyForm::label1_Click_1);
 			// 
 			// MyForm
 			// 
@@ -115,7 +115,5 @@ namespace Forms {
 		double resul = calc.Calc();
 		label1->Text = Convert::ToString(resul);
 	}
-	//private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
-	//}
 };
 }
